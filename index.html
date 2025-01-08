@@ -37,7 +37,7 @@
 
         /* 容器 */
         .container {
-            max-width: 100%;
+            max-width: 90%;
             margin: 20px auto;
             padding: 20px;
             background-color: #fff;
@@ -53,14 +53,47 @@
             text-align: center;
         }
 
-        /* 图片样式 */
-        img {
-            max-width: 50%;
-            height: auto;
-            display: block;
+        /* 图片居中 */
+        .center-img {
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+        }
+
+        .center-img img {
+            max-width: 50%; /* 图片最大宽度 */
+            height: auto; /* 高度自适应 */
+            border-radius: 10px; /* 圆角效果 */
+        }
+        /* 联系方式简介框 */
+        .contact-box {
+            background-color: #f0f0f0; /* 浅灰色背景 */
+            padding: 20px;
+            border-radius: 10px; /* 圆角效果 */
+            margin-top: 20px; /* 与上方内容的间距 */
+        }
+
+        .contact-box h3 {
+            margin-top: 0;
+            color: #2c3e50; /* 深灰色标题 */
+        }
+
+        .contact-box ul {
+            list-style-type: none; /* 去掉列表符号 */
+            padding: 0;
+        }
+
+        .contact-box ul li {
             margin: 10px 0;
-            border-radius: 5px;
-            display: inline-block;
+        }
+
+        .contact-box ul li a {
+            color: #3498db; /* 蓝色链接 */
+            text-decoration: none;
+        }
+
+        .contact-box ul li a:hover {
+            text-decoration: underline; /* 鼠标悬停时显示下划线 */
         }
 
         /* 视频样式 */
@@ -156,15 +189,26 @@
             <h2>研究方向</h2>
             <p>我的研究方向是“基于视觉的结构振动、位移高精度测量技术”，目前正在研究：单目相机对靶标的多自由度运动提取。争取早日论文Accept!</p>
         </section>
-
+        
+        <!-- 联系方式简介框 -->
+        <section id="contact" class="contact-box">
+            <h3>联系方式</h3>
+            <ul>
+                <li>📧 邮箱：<a href="mailto:hongsc77@sjtu.edu.cn">hongsc77@sjtu.edu.cn</a></li>
+                <li>📞 电话：<a href="tel:+8617366395572">173 6639 5572</a></li>
+                <li>🌐 个人网站：<a href="https://hongscme.github.io" target="_blank">https://hongscme.github.io</a></li>
+                <li>🐦 社交媒体：<a href="https://www.xiaohongshu.com/user/profile/617257a900000000020184fb" target="_blank">小红书</a></li>
+            </ul>
+        </section>
+    </div>
+    
         <!-- 资料库 -->
         <section id="resources">
             <h2>资料库</h2>
-            <p>以下是我整理的一些资料，还没整理好~：</p>
+            <p>以下是我整理的一些资料，请自行取阅：</p>
             <ul>
-                <li><a class="file-link" href="file1.pdf" download>文件1：PDF文档</a></li>
-                <li><a class="file-link" href="file2.docx" download>文件2：Word文档</a></li>
-                <li><a class="file-link" href="file3.zip" download>文件3：压缩包</a></li>
+                <li><a class="file-link" href="Hong Sicheng CV.pdf" download>文件1：Personal CV</a></li>
+                <li><a class="file-link" href="洪思诚个人简历.pdf" download>文件2：个人简历</a></li>
             </ul>
         </section>
     </div>
