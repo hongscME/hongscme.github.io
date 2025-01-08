@@ -5,162 +5,161 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的个人主页</title>
     <style>
+        /* 全局样式 */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #e0e0e0;
+            background-color: #f9f9f9;
             color: #333;
+            line-height: 1.6;
         }
-        header {
-            background-color: #f4f4f9;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-        }
+
+        /* 导航栏 */
         nav {
-            display: flex;
-            justify-content: center;
-            background-color: #333;
+            padding: 15px 0;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0; /* 添加底部边框 */
+            background-color: transparent; /* 去掉背景色 */
         }
+
         nav a {
-            color: white;
-            padding: 14px 20px;
+            color: #2c3e50; /* 深灰色文字 */
+            margin: 0 15px;
             text-decoration: none;
-            text-align: center;
+            font-weight: bold;
+            transition: color 0.3s ease; /* 添加颜色过渡效果 */
         }
+
         nav a:hover {
-            background-color: #575757;
+            color: #3498db; /* 鼠标悬停时变为蓝色 */
         }
+
+        /* 容器 */
         .container {
+            max-width: 800px;
+            margin: 20px auto;
             padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .section {
-            margin-bottom: 40px;
+
+        /* 标题 */
+        h1, h2 {
+            color: #2c3e50;
         }
-        .section h2 {
-            color: #4CAF50;
-            border-bottom: 2px solid #4CAF50;
-            padding-bottom: 10px;
-        }
-        .project, .skill {
-            background-color: white;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .project h3, .skill h3 {
-            margin-top: 0;
-        }
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .contact-form button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .contact-form button:hover {
-            background-color: #45a049;
-        }
-        footer {
-            background-color: #333;
-            color: white;
+
+        h1 {
             text-align: center;
-            padding: 10px 0;
-            margin-top: 40px;
         }
-        footer a {
-            color: #4CAF50;
+
+        /* 图片样式 */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        /* 视频样式 */
+        video {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        /* 文件链接样式 */
+        .file-link {
+            display: inline-block;
+            margin: 5px 0;
+            color: #3498db;
             text-decoration: none;
         }
-        footer a:hover {
+
+        .file-link:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
-    <!-- 头部 -->
-    <header>
-        <h1>欢迎来到我的个人主页</h1>
-        <p>这里展示我的作品、技能和联系方式</p>
-    </header>
-
     <!-- 导航栏 -->
     <nav>
-        <a href="#about">关于我</a>
-        <a href="#projects">项目</a>
-        <a href="#skills">技能</a>
-        <a href="#contact">联系我</a>
+        <a href="#about">个人简介</a>
+        <a href="#education">求学经历</a>
+        <a href="#hobbies">兴趣爱好</a>
+        <a href="#travel">旅行足迹</a>
+        <a href="#research">研究方向</a>
+        <a href="#resources">资料库</a>
     </nav>
 
     <!-- 主要内容 -->
     <div class="container">
-        <!-- 关于我 -->
-        <section id="about" class="section">
-            <h2>关于我</h2>
-            <p>你好！我是一名上海交通大学的博士生，专注于前端开发和用户体验设计。我喜欢学习新技术，并将它们应用到实际项目中。</p>
+        <!-- 个人简介 -->
+        <section id="about">
+            <h2>个人简介</h2>
+            <p>你好！我是Hong Sicheng，目前是上海交通大学振动、噪声、冲击研究所的2023级博士研究生，主攻基于视觉的结构振动、位移高精度测量系统。</p>
+            <img src="profile.jpg" alt="个人照片">
         </section>
 
-        <!-- 项目展示 -->
-        <section id="projects" class="section">
-            <h2>我的项目</h2>
-            <div class="project">
-                <h3>项目 1：个人博客系统</h3>
-                <p>一个基于 React 和 Node.js 的个人博客系统，支持 Markdown 编辑和文章分类。</p>
-            </div>
-            <div class="project">
-                <h3>项目 2：在线购物网站</h3>
-                <p>一个使用 Vue.js 和 Django 开发的在线购物网站，支持用户注册、商品浏览和支付功能。</p>
-            </div>
+        <!-- 求学经历 -->
+        <section id="education">
+            <h2>求学经历</h2>
+            <ul>
+                <li>[上海交通大学] - [本科] - [机械工程（试点班）] - [2019.9-2023.6]</li>
+                <li>[南京市梅山高级中学] - [高中] - [2016.9-2019.6]</li>
+                <li>[南京市梅山第一中学] - [初中] - [2014.9-2016.6]</li>
+            </ul>
         </section>
 
-        <!-- 技能列表 -->
-        <section id="skills" class="section">
-            <h2>我的技能</h2>
-            <div class="skill">
-                <h3>前端开发</h3>
-                <p>HTML, CSS, JavaScript, React, Vue.js</p>
-            </div>
-            <div class="skill">
-                <h3>后端开发</h3>
-                <p>Node.js, Django, Flask, MySQL, MongoDB</p>
-            </div>
-            <div class="skill">
-                <h3>工具</h3>
-                <p>Git, VS Code, Docker, Figma</p>
-            </div>
+        <!-- 兴趣爱好与特长 -->
+        <section id="hobbies">
+            <h2>兴趣爱好与特长</h2>
+            <p>我的兴趣爱好包括：</p>
+            <ul>
+                <li>[旅行]</li>
+                <li>[影视剧]</li>
+                <li>[社会学]</li>
+            </ul>
+            <p>我的特长有：</p>
+            <ul>
+                <li>[篮球]</li>
+                <li>[INFJ]</li>
+            </ul>
         </section>
 
-        <!-- 联系表单 -->
-        <section id="contact" class="section">
-            <h2>联系我</h2>
-            <form class="contact-form">
-                <input type="text" placeholder="你的名字" required>
-                <input type="email" placeholder="你的邮箱" required>
-                <textarea placeholder="你的消息" rows="5" required></textarea>
-                <button type="submit">发送</button>
-            </form>
+        <!-- 旅行过的地方 -->
+        <section id="travel">
+            <h2>旅行足迹</h2>
+            <p>我去过的地方：</p>
+            <ul>
+                <li>[法国] - [描述]</li>
+                <li>[俄罗斯] - [描述]</li>
+            </ul>
+            <img src="travel1.jpg" alt="旅行照片1">
+            <img src="travel2.jpg" alt="旅行照片2">
+        </section>
+
+        <!-- 研究方向 -->
+        <section id="research">
+            <h2>研究方向</h2>
+            <p>我的研究方向是[基于视觉的结构振动、位移高精度测量技术]，目前正在研究[单目相机对靶标的多自由度运动提取]。</p>
+        </section>
+
+        <!-- 资料库 -->
+        <section id="resources">
+            <h2>资料库</h2>
+            <p>以下是我整理的一些资料：</p>
+            <ul>
+                <li><a class="file-link" href="file1.pdf" download>文件1：PDF文档</a></li>
+                <li><a class="file-link" href="file2.docx" download>文件2：Word文档</a></li>
+                <li><a class="file-link" href="file3.zip" download>文件3：压缩包</a></li>
+            </ul>
         </section>
     </div>
-
-    <!-- 页脚 -->
-    <footer>
-        <p>© 2023 我的个人主页 | 访问我的 <a href="https://github.com/username" target="_blank">GitHub</a></p>
-    </footer>
 
 </body>
 </html>
