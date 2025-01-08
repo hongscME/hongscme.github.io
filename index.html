@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的个人主页</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        nav a:hover {
+            background-color: #575757;
+        }
+        .container {
+            padding: 20px;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section h2 {
+            color: #4CAF50;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        .project, .skill {
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .project h3, .skill h3 {
+            margin-top: 0;
+        }
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .contact-form button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .contact-form button:hover {
+            background-color: #45a049;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 40px;
+        }
+        footer a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 头部 -->
+    <header>
+        <h1>欢迎来到我的个人主页</h1>
+        <p>这里展示我的作品、技能和联系方式</p>
+    </header>
+
+    <!-- 导航栏 -->
+    <nav>
+        <a href="#about">关于我</a>
+        <a href="#projects">项目</a>
+        <a href="#skills">技能</a>
+        <a href="#contact">联系我</a>
+    </nav>
+
+    <!-- 主要内容 -->
+    <div class="container">
+        <!-- 关于我 -->
+        <section id="about" class="section">
+            <h2>关于我</h2>
+            <p>你好！我是一名上海交通大学的博士生，专注于前端开发和用户体验设计。我喜欢学习新技术，并将它们应用到实际项目中。</p>
+        </section>
+
+        <!-- 项目展示 -->
+        <section id="projects" class="section">
+            <h2>我的项目</h2>
+            <div class="project">
+                <h3>项目 1：个人博客系统</h3>
+                <p>一个基于 React 和 Node.js 的个人博客系统，支持 Markdown 编辑和文章分类。</p>
+            </div>
+            <div class="project">
+                <h3>项目 2：在线购物网站</h3>
+                <p>一个使用 Vue.js 和 Django 开发的在线购物网站，支持用户注册、商品浏览和支付功能。</p>
+            </div>
+        </section>
+
+        <!-- 技能列表 -->
+        <section id="skills" class="section">
+            <h2>我的技能</h2>
+            <div class="skill">
+                <h3>前端开发</h3>
+                <p>HTML, CSS, JavaScript, React, Vue.js</p>
+            </div>
+            <div class="skill">
+                <h3>后端开发</h3>
+                <p>Node.js, Django, Flask, MySQL, MongoDB</p>
+            </div>
+            <div class="skill">
+                <h3>工具</h3>
+                <p>Git, VS Code, Docker, Figma</p>
+            </div>
+        </section>
+
+        <!-- 联系表单 -->
+        <section id="contact" class="section">
+            <h2>联系我</h2>
+            <form class="contact-form">
+                <input type="text" placeholder="你的名字" required>
+                <input type="email" placeholder="你的邮箱" required>
+                <textarea placeholder="你的消息" rows="5" required></textarea>
+                <button type="submit">发送</button>
+            </form>
+        </section>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>© 2023 我的个人主页 | 访问我的 <a href="https://github.com/username" target="_blank">GitHub</a></p>
+    </footer>
+
+</body>
+</html>
