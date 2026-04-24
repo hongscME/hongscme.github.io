@@ -662,7 +662,7 @@ footer {
         </div>
         <div>
             <!-- 📷 将 assets/images/profile.jpg 替换为你的个人照片文件 -->
-            <img class="about-photo" src="profile.jpg" alt="个人照片">
+            <img class="about-photo" src="assets/images/profile.jpg" alt="个人照片">
         </div>
     </div>
 </section>
@@ -934,7 +934,7 @@ footer {
         <h2>资料库</h2>
     </div>
     <p style="font-size:0.88rem;color:var(--text-light);margin-bottom:20px;">
-        以下为公开学术资料，欢迎取阅。若页面部署在 GitHub Pages 上，放进仓库并被页面引用的图片、PDF 都会对访客可见；隐私材料不要放进这个仓库。
+        以下为公开资料，欢迎取阅。
     </p>
     <div class="resource-list">
         <a class="resource-item" href="assets/docs/Hong_Sicheng_CV.pdf" download>
@@ -1015,20 +1015,9 @@ footer {
 
 <!-- ==================== SCRIPTS ==================== -->
 <script>
-/*
- * AI 聊天模块：推荐结构
- * 1) 前端只负责展示与发送消息
- * 2) Cloudflare Worker 保存密钥、注入系统提示词并代理请求
- * 3) 前端只调用 Worker URL，不在浏览器里暴露 API Key
- *
- * 你需要在下面填入 Worker 地址，例如：
- * const WORKER_URL = "https://your-worker.yourname.workers.dev/chat";
- *
- * 若还没部署 Worker，聊天框仍可打开，但发送会提示未配置。
- */
 
 // ====== 配置区（只需修改这里）======
-const WORKER_URL = "https://back-url.sjtuurl.workers.dev"; // 你的 Cloudflare Worker 地址（后端代理）
+const WORKER_URL = "https://back-url.sjtuurl.workers.dev"; 
 
 
 // ====== 状态变量 ======
