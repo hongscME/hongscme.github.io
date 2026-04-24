@@ -3,336 +3,1157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的个人主页</title>
+    <title>个人主页</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Serif+SC:wght@300;400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* 全局样式 */
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
-            line-height: 1.6;
-        }
 
-        /* 导航栏 */
-        nav {
-            padding: 15px 0;
-            text-align: center;
-            border-bottom: 1px solid #e0e0e0; /* 添加底部边框 */
-            background-color: transparent; /* 去掉背景色 */
-        }
+/* ================================================
+   CSS VARIABLES — 修改这里可一键换色换风格
+================================================ */
+:root {
+    --navy:        #1a2744;
+    --navy-mid:    #253357;
+    --navy-light:  #344872;
+    --gold:        #b79a67;
+    --gold-light:  #d7c3a0;
+    --gold-dim:    rgba(183,154,103,0.16);
+    --cream:       #f7f5f0;
+    --white:       #ffffff;
+    --gray-100:    #f5f3ef;
+    --gray-200:    #e8e4dc;
+    --gray-400:    #a09890;
+    --gray-600:    #6b6258;
+    --text:        #2d2926;
+    --text-light:  #6b6258;
+    --shadow-sm:   0 1px 4px rgba(26,39,68,0.07);
+    --shadow-md:   0 4px 18px rgba(26,39,68,0.11);
+    --shadow-lg:   0 10px 40px rgba(26,39,68,0.16);
+    --r-sm:        6px;
+    --r-md:        12px;
+    --r-lg:        20px;
+    --ease:        cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-        nav a {
-            color: #2c3e50; /* 深灰色文字 */
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease; /* 添加颜色过渡效果 */
-        }
+/* ================================================
+   RESET & BASE
+================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Source Sans 3', 'Noto Serif SC', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.8;
+    font-size: 16px;
+}
 
-        nav a:hover {
-            color: #3498db; /* 鼠标悬停时变为蓝色 */
-        }
+/* ================================================
+   NAVIGATION
+================================================ */
+nav {
+    position: sticky; top: 0; z-index: 200;
+    background: rgba(250,248,244,0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--gray-200);
+}
+.nav-inner {
+    max-width: 1000px; margin: 0 auto; padding: 0 28px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 58px;
+}
+.nav-brand {
+    font-family: 'Lora', serif; font-weight: 700;
+    font-size: 0.92rem; color: var(--navy); text-decoration: none;
+    letter-spacing: 0.05em;
+}
+.nav-links { display: flex; gap: 0; }
+nav .nav-links a {
+    color: var(--gray-600); padding: 8px 13px;
+    text-decoration: none; font-size: 0.82rem; font-weight: 600;
+    letter-spacing: 0.04em; position: relative;
+    transition: color 0.25s var(--ease);
+}
+nav .nav-links a::after {
+    content: ''; position: absolute; bottom: 3px;
+    left: 13px; right: 13px; height: 2px;
+    background: var(--gold); border-radius: 1px;
+    transform: scaleX(0); transition: transform 0.25s var(--ease);
+}
+nav .nav-links a:hover { color: var(--navy); }
+nav .nav-links a:hover::after { transform: scaleX(1); }
 
-        /* 容器 */
-        .container {
-            max-width: 90%;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+/* ================================================
+   HERO
+================================================ */
+.hero {
+    background: linear-gradient(140deg, var(--navy) 0%, #243560 55%, #1c3358 100%);
+    color: white; padding: 88px 28px 76px;
+    text-align: center; position: relative; overflow: hidden;
+}
+.hero::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background:
+        radial-gradient(ellipse 60% 60% at 20% 50%, rgba(200,169,110,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 80% 15%, rgba(200,169,110,0.07) 0%, transparent 50%);
+}
+.hero-overline {
+    font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold-light); margin-bottom: 18px; font-weight: 600;
+    opacity: 0.85;
+}
+.hero h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(1.95rem, 4.4vw, 2.7rem); font-weight: 700;
+    letter-spacing: 0.06em; color: white; margin-bottom: 10px;
+}
+.hero-en {
+    font-family: 'Lora', serif; font-size: 1.1rem;
+    color: rgba(255,255,255,0.55); font-style: italic; margin-bottom: 22px;
+}
+.hero-rule {
+    width: 44px; height: 2px; background: var(--gold);
+    margin: 0 auto 22px; border-radius: 1px;
+}
+.hero-sub {
+    font-size: 0.92rem; color: rgba(255,255,255,0.68);
+    max-width: 540px; margin: 0 auto; line-height: 1.75;
+}
 
-        /* 标题 */
-        h1, h2 {
-            color: #2c3e50;
-        }
+/* ================================================
+   LAYOUT
+================================================ */
+.container { max-width: 1000px; margin: 0 auto; padding: 0 28px; }
 
-        h1 {
-            text-align: center;
-        }
+/* ================================================
+   SECTIONS
+================================================ */
+.section {
+    padding: 68px 0;
+    border-bottom: 1px solid var(--gray-200);
+}
+.section:last-child { border-bottom: none; }
 
-        /* 图片居中 */
-        .center-img {
-            display: flex;
-            justify-content: center; /* 水平居中 */
-            align-items: center; /* 垂直居中 */
-        }
+.section-header {
+    display: flex; align-items: baseline; gap: 14px; margin-bottom: 36px;
+}
+.section-num {
+    font-family: 'Lora', serif; font-size: 0.72rem; font-weight: 700;
+    color: var(--gold); letter-spacing: 0.12em;
+}
+h2 {
+    font-family: 'Lora', serif; font-size: 1.65rem;
+    font-weight: 700; color: var(--navy); letter-spacing: 0.02em;
+}
+h3 {
+    font-family: 'Lora', serif; font-size: 1.1rem;
+    font-weight: 600; color: var(--navy);
+}
+p { color: var(--text); line-height: 1.85; margin-bottom: 14px; }
 
-        .center-img img {
-            max-width: 60%; /* 图片最大宽度 */
-            height: auto; /* 高度自适应 */
-            border-radius: 10px; /* 圆角效果 */
-        }
-        /* 小屏幕设备优化 */
-        @media (max-width: 600px) {
-            .center-img img {
-                max-width: 60%; /* 在小屏幕上进一步缩小图片 */
-            }
-        }
-        
-        /* 联系方式简介框 */
-        .contact-box {
-            background-color: #f0f0f0; /* 浅灰色背景 */
-            padding: 20px;
-            border-radius: 10px; /* 圆角效果 */
-            margin-top: 20px; /* 与上方内容的间距 */
-        }
+/* ================================================
+   01 · ABOUT
+================================================ */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 240px;
+    gap: 52px; align-items: start;
+}
+@media (max-width: 680px) {
+    .about-grid { grid-template-columns: 1fr; }
+}
+.about-photo {
+    width: 100%; border-radius: var(--r-md);
+    box-shadow: var(--shadow-md); display: block;
+    /*
+     * 📷 个人照片
+     * 将 src="profile.jpg" 替换为你的照片文件名
+    */
+}
+.meta-tags { display: flex; flex-direction: column; gap: 10px; margin-top: 22px; }
+.meta-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--navy); color: white;
+    padding: 5px 14px; border-radius: 99px;
+    font-size: 0.8rem; font-weight: 600; width: fit-content;
+}
+.meta-tag .dot {
+    width: 5px; height: 5px;
+    background: var(--gold); border-radius: 50%; flex-shrink: 0;
+}
 
-        .contact-box h3 {
-            margin-top: 0;
-            color: #2c3e50; /* 深灰色标题 */
-        }
+/* ================================================
+   02 · EDUCATION (Timeline)
+================================================ */
+.timeline {
+    position: relative;
+    display: flex; flex-direction: column; gap: 0;
+}
+.timeline::before {
+    content: ''; position: absolute; left: 10px; top: 14px; bottom: 14px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--gold), rgba(200,169,110,0.3), transparent);
+}
+.tl-item {
+    display: grid; grid-template-columns: 24px 1fr;
+    gap: 22px; padding-bottom: 30px; align-items: start;
+}
+.tl-dot {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--white); border: 2.5px solid var(--gold);
+    margin-top: 3px; position: relative; z-index: 1; flex-shrink: 0;
+    transition: background 0.25s;
+}
+.tl-dot.current { background: var(--gold); }
+.tl-card {
+    background: var(--white); border: 1px solid var(--gray-200);
+    border-radius: var(--r-md); padding: 16px 22px;
+    box-shadow: var(--shadow-sm); transition: box-shadow 0.25s, border-color 0.25s;
+}
+.tl-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--gold-light);
+}
+.tl-title {
+    font-weight: 700; color: var(--navy); font-size: 0.94rem; margin-bottom: 5px;
+}
+.tl-meta {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    font-size: 0.8rem; color: var(--text-light); align-items: center;
+}
+.tl-badge {
+    background: var(--gray-100); padding: 2px 9px;
+    border-radius: 4px; font-size: 0.76rem; color: var(--gray-600);
+}
 
-        .contact-box ul {
-            list-style-type: none; /* 去掉列表符号 */
-            padding: 0;
-        }
+/* ================================================
+   03 · AI CHAT WIDGET
+   (插入于"学习经历"与"研究方向"之间)
+================================================ */
+.ai-section {
+    padding: 68px 0;
+    border-bottom: 1px solid var(--gray-200);
+}
+.ai-intro {
+    font-size: 0.88rem; color: var(--text-light);
+    margin-bottom: 28px; line-height: 1.75; max-width: 640px;
+}
+.ai-card {
+    background: var(--white); border: 1px solid var(--gray-200);
+    border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-md);
+}
+.ai-header {
+    background: linear-gradient(135deg, var(--navy), #2a3f6e);
+    padding: 18px 26px;
+    display: flex; align-items: center; justify-content: space-between;
+}
+.ai-header-left { display: flex; align-items: center; gap: 14px; }
+.ai-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Lora', serif; font-weight: 700; font-size: 1.1rem;
+    color: var(--navy); flex-shrink: 0;
+    box-shadow: 0 0 0 3px rgba(200,169,110,0.25);
+}
+.ai-name {
+    font-family: 'Lora', serif; font-weight: 700;
+    color: white; font-size: 0.97rem;
+}
+.ai-status { font-size: 0.74rem; color: rgba(255,255,255,0.55); margin-top: 2px; }
+.ai-status-dot {
+    display: inline-block; width: 6px; height: 6px;
+    background: #4ade80; border-radius: 50%; margin-right: 5px;
+    animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+.ai-toggle-btn {
+    background: rgba(255,255,255,0.13); border: 1px solid rgba(255,255,255,0.22);
+    color: white; padding: 8px 20px; border-radius: 99px;
+    font-size: 0.82rem; font-weight: 700; cursor: pointer;
+    font-family: inherit; transition: background 0.2s;
+    white-space: nowrap;
+}
+.ai-toggle-btn:hover { background: rgba(255,255,255,0.24); }
 
-        .contact-box ul li {
-            margin: 10px 0;
-        }
+.ai-body { display: none; flex-direction: column; }
+.ai-body.open { display: flex; }
 
-        .contact-box ul li a {
-            color: #3498db; /* 蓝色链接 */
-            text-decoration: none;
-        }
+.ai-messages {
+    height: 360px; overflow-y: auto;
+    padding: 22px 26px; display: flex; flex-direction: column; gap: 14px;
+    background: var(--cream);
+}
+.ai-messages::-webkit-scrollbar { width: 4px; }
+.ai-messages::-webkit-scrollbar-thumb { background: var(--gray-200); border-radius: 2px; }
 
-        .contact-box ul li a:hover {
-            text-decoration: underline; /* 鼠标悬停时显示下划线 */
-        }
+.msg { display: flex; gap: 10px; align-items: flex-start; animation: msgIn 0.22s ease; }
+@keyframes msgIn { from{opacity:0;transform:translateY(7px)} to{opacity:1;transform:none} }
+.msg.user { flex-direction: row-reverse; }
 
-        /* 联系方式简介框 */
-        .contact-box {
-            background-color: #f0f0f0; /* 浅灰色背景 */
-            padding: 20px;
-            border-radius: 10px; /* 圆角效果 */
-            margin-top: 20px; /* 与上方内容的间距 */
-        }
+.msg-av {
+    width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 700; margin-top: 1px;
+}
+.msg.bot .msg-av  { background: linear-gradient(135deg,var(--navy),#2a3f6e); color: var(--gold); }
+.msg.user .msg-av { background: var(--gray-200); color: var(--gray-600); }
 
-        .contact-box h3 {
-            margin-top: 0;
-            color: #2c3e50; /* 深灰色标题 */
-        }
+.msg-bub {
+    max-width: 76%; padding: 11px 15px; border-radius: 16px;
+    font-size: 0.88rem; line-height: 1.65;
+}
+.msg.bot  .msg-bub { background:var(--white); border:1px solid var(--gray-200); border-bottom-left-radius:4px; }
+.msg.user .msg-bub { background:var(--navy); color:white; border-bottom-right-radius:4px; }
 
-        .contact-box ul {
-            list-style-type: none; /* 去掉列表符号 */
-            padding: 0;
-        }
+.typing-bub { display:flex; gap:5px; align-items:center; padding:4px 0; }
+.typing-bub span {
+    width:7px;height:7px;background:var(--gray-400);border-radius:50%;
+    animation: dotBounce 1.2s infinite;
+}
+.typing-bub span:nth-child(2){animation-delay:.2s}
+.typing-bub span:nth-child(3){animation-delay:.4s}
+@keyframes dotBounce {0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
 
-        .contact-box ul li {
-            margin: 10px 0;
-        }
+.ai-suggest-bar {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    padding: 14px 20px; border-top: 1px solid var(--gray-200); background: var(--white);
+}
+.suggest-chip {
+    background: var(--gray-100); border: 1px solid var(--gray-200);
+    color: var(--navy); padding: 5px 14px; border-radius: 99px;
+    font-size: 0.76rem; cursor: pointer; font-family: inherit;
+    transition: all 0.2s;
+}
+.suggest-chip:hover { background: var(--navy); color: white; border-color: var(--navy); }
 
-        .contact-box ul li a {
-            color: #3498db; /* 蓝色链接 */
-            text-decoration: none;
-        }
+.ai-input-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 14px 18px; border-top: 1px solid var(--gray-200); background: var(--white);
+}
+.ai-input {
+    flex: 1; padding: 10px 16px; border: 1.5px solid var(--gray-200);
+    border-radius: 99px; font-family: inherit; font-size: 0.88rem;
+    background: var(--cream); color: var(--text); outline: none;
+    transition: border-color 0.2s;
+}
+.ai-input:focus { border-color: var(--gold); }
+.ai-send {
+    width: 40px; height: 40px; border-radius: 50%; background: var(--navy);
+    border: none; color: white; font-size: 0.95rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    transition: background 0.2s, transform 0.15s;
+}
+.ai-send:hover { background: var(--gold); color: var(--navy); }
+.ai-send:active { transform: scale(0.93); }
+.ai-send:disabled { opacity: 0.45; cursor: not-allowed; }
 
-        .contact-box ul li a:hover {
-            text-decoration: underline; /* 鼠标悬停时显示下划线 */
-        }
+.ai-notice {
+    padding: 9px 20px; text-align: center;
+    font-size: 0.7rem; color: var(--text-light);
+    border-top: 1px solid var(--gray-100); background: var(--white);
+}
 
-        /* 访客留言表单 */
-        #contact-form {
-            margin-top: 40px;
-            padding: 20px;
-            background-color: #f0f0f0;
-            border-radius: 10px;
-        }
+/* ================================================
+   04 · RESEARCH
+================================================ */
+.research-card {
+    background: var(--navy); color: white;
+    border-radius: var(--r-lg); padding: 38px 44px;
+    position: relative; overflow: hidden;
+}
+.research-card::before {
+    content: ''; position: absolute; top: -50px; right: -50px;
+    width: 220px; height: 220px; border-radius: 50%;
+    background: rgba(200,169,110,0.10); pointer-events: none;
+}
+.research-card::after {
+    content: ''; position: absolute; bottom: -30px; left: 10%;
+    width: 150px; height: 150px; border-radius: 50%;
+    background: rgba(200,169,110,0.05); pointer-events: none;
+}
+.research-card h3 {
+    color: var(--gold-light); margin-bottom: 16px;
+    font-size: 0.78rem; letter-spacing: 0.14em;
+    text-transform: uppercase; font-weight: 700;
+}
+.research-card p {
+    color: rgba(255,255,255,0.82); font-size: 1.04rem; line-height: 1.88; margin-bottom: 0;
+}
+.research-tags {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px;
+}
+.rtag {
+    background: rgba(200,169,110,0.18); color: var(--gold-light);
+    border: 1px solid rgba(200,169,110,0.28);
+    padding: 4px 13px; border-radius: 99px; font-size: 0.78rem; font-weight: 600;
+}
 
-        #contact-form h2 {
-            margin-top: 0;
-            color: #2c3e50;
-        }
+/* ================================================
+   05 · HOBBIES
+================================================ */
+.hobbies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 14px;
+}
+.hobby-card {
+    background: var(--white); border: 1px solid var(--gray-200);
+    border-radius: var(--r-md); padding: 22px 18px;
+    text-align: center; transition: all 0.25s var(--ease);
+}
+.hobby-card:hover {
+    border-color: var(--gold); box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+}
+.hobby-icon { font-size: 1.9rem; margin-bottom: 9px; display: block; }
+.hobby-label { font-weight: 700; color: var(--navy); font-size: 0.9rem; }
+.hobby-sub { font-size: 0.76rem; color: var(--text-light); margin-top: 4px; }
 
-        #contact-form label {
-            display: block;
-            margin: 10px 0 5px;
-            font-weight: bold;
-        }
+/* ================================================
+   06 · TRAVEL & PHOTO GRID
+================================================ */
+.travel-entry { margin-bottom: 48px; }
+.travel-header { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+.travel-flag { font-size: 2rem; line-height: 1; }
+.travel-info h4 { font-weight: 700; color: var(--navy); font-size: 0.97rem; }
+.travel-info span { font-size: 0.8rem; color: var(--text-light); }
 
-        #contact-form textarea {
-            width: 80%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+/*
+ * ╔════════════════════════════════════════════════╗
+ * ║  📷  照片网格 — 配置区（重要！请阅读此注释）   ║
+ * ╠════════════════════════════════════════════════╣
+ * ║  当前布局：每行 2 张照片                        ║
+ * ║  改为3张：将下方 repeat(2, 1fr) → repeat(3, 1fr)║
+ * ║  宽屏比例：修改 aspect-ratio（见下）            ║
+ * ║  小屏自动单列：在 @media 块中已设置 1fr         ║
+ * ╚════════════════════════════════════════════════╝
+*/
+.photo-grid {
+    --photo-cols: 2; /* ← 改成 3 就是三列；改成 1 就是单列 */
+    display: grid;
+    grid-template-columns: repeat(var(--photo-cols), minmax(0, 1fr));
+    gap: 10px;
+}
+.photo-grid img {
+    width: 100%;
+    aspect-ratio: 4 / 3;  /* ← 可改为 1/1（方形）或 16/9 */
+    object-fit: cover; border-radius: var(--r-sm);
+    display: block; cursor: zoom-in;
+    transition: transform 0.35s var(--ease), box-shadow 0.35s;
+}
+.photo-grid img:hover { transform: scale(1.025); box-shadow: var(--shadow-lg); }
 
-        #contact-form button {
-            background-color: #3498db;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+/* 流水线式（瀑布流）备用方案：
+ * 1. 把 div 的 class 改成：photo-grid masonry
+ * 2. 保持里面每张图用 <figure class="photo-fig"> 包起来
+ * 3. 需要 2 栏/3 栏时，调 .photo-grid.masonry 的 column-count
+ */
+.photo-grid.masonry {
+    display: block;
+    column-count: 2; /* 改成 3 就是三列瀑布流 */
+    column-gap: 10px;
+}
+.photo-grid.masonry .photo-fig {
+    break-inside: avoid;
+    margin: 0 0 10px;
+}
+.photo-grid.masonry img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+}
 
-        #contact-form button:hover {
-            background-color: #2980b9;
-        }
+/* 添加照片说明：
+ * 推荐写法：
+ *   <figure class="photo-fig">
+ *     <img src="photos/xxx.jpg" alt="描述">
+ *     <figcaption>图片说明文字</figcaption>
+ *   </figure>
+ * 如果暂时不想加说明，直接用 <img> 也可以。
+ */
+.photo-fig figcaption {
+    font-size: 0.75rem; color: var(--text-light);
+    text-align: center; margin-top: 5px; padding: 0 4px;
+}
 
-        /* 视频样式 */
-        video {
-            max-width: 60%;
-            height: auto;
-            display: block;
-            margin: 10px 0;
-            border-radius: 5px;
-        }
+/* ================================================
+   07 · CONTACT BOX
+================================================ */
+.contact-box {
+    background: var(--white); border: 1px solid var(--gray-200);
+    border-radius: var(--r-lg); padding: 34px 38px; box-shadow: var(--shadow-sm);
+}
+.contact-list { list-style: none; display: flex; flex-direction: column; gap: 18px; }
+.contact-list li { display: flex; align-items: center; gap: 16px; }
+.c-icon {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: var(--gray-100); display: flex; align-items: center;
+    justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+}
+.c-detail { display: flex; flex-direction: column; }
+.c-label {
+    font-size: 0.74rem; font-weight: 700; color: var(--text-light);
+    letter-spacing: 0.08em; text-transform: uppercase;
+}
+.c-value a {
+    color: var(--navy); text-decoration: none; font-weight: 600;
+    transition: color 0.2s;
+}
+.c-value a:hover { color: var(--gold); }
 
-        /* 文件链接样式 */
-        .file-link {
-            display: inline-block;
-            margin: 5px 0;
-            color: #3498db;
-            text-decoration: none;
-        }
+/* ================================================
+   08 · RESOURCES
+================================================ */
+.resource-list { display: flex; flex-direction: column; gap: 12px; }
+.resource-item {
+    display: flex; align-items: center; gap: 18px;
+    background: var(--white); border: 1px solid var(--gray-200);
+    border-radius: var(--r-md); padding: 16px 22px;
+    text-decoration: none; color: inherit;
+    transition: all 0.25s var(--ease);
+}
+.resource-item:hover { border-color: var(--gold); box-shadow: var(--shadow-md); }
+.r-icon {
+    width: 46px; height: 46px; border-radius: var(--r-sm);
+    background: var(--navy); display: flex; align-items: center;
+    justify-content: center; font-size: 1.25rem; flex-shrink: 0;
+}
+.r-name { font-weight: 700; color: var(--navy); font-size: 0.9rem; }
+.r-meta { font-size: 0.78rem; color: var(--text-light); margin-top: 2px; }
+.r-arrow { margin-left: auto; color: var(--gold); font-size: 1.2rem; }
 
-        .file-link:hover {
-            text-decoration: underline;
-        }
+/* ================================================
+   09 · GUESTBOOK
+================================================ */
+.guestbook-card {
+    background: var(--white); border: 1px solid var(--gray-200);
+    border-radius: var(--r-lg); padding: 36px; box-shadow: var(--shadow-sm);
+}
+.form-label {
+    display: block; font-size: 0.8rem; font-weight: 700;
+    color: var(--navy); letter-spacing: 0.07em; text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.form-textarea {
+    width: 100%; padding: 14px 16px; border: 1.5px solid var(--gray-200);
+    border-radius: var(--r-md); font-family: inherit; font-size: 0.92rem;
+    color: var(--text); background: var(--cream); resize: vertical;
+    transition: border-color 0.2s; line-height: 1.7; outline: none;
+}
+.form-textarea:focus { border-color: var(--gold); }
+.form-btn {
+    margin-top: 16px; background: var(--navy); color: white;
+    padding: 11px 32px; border: none; border-radius: var(--r-md);
+    font-family: inherit; font-size: 0.88rem; font-weight: 700;
+    cursor: pointer; letter-spacing: 0.05em; transition: all 0.2s var(--ease);
+}
+.form-btn:hover { background: var(--gold); color: var(--navy); }
 
-          /* 页脚 */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #2c3e50;
-            color: white;
-            margin-top: 40px;
-        }
+/* ================================================
+   FOOTER
+================================================ */
+footer {
+    background: var(--navy); color: rgba(255,255,255,0.65);
+    padding: 56px 28px 32px;
+}
+.footer-grid {
+    max-width: 1000px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px;
+    padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,0.09);
+}
+@media (max-width: 640px) {
+    .footer-grid { grid-template-columns: 1fr; }
+}
+.footer-brand {
+    font-family: 'Lora', serif; font-size: 1.15rem; font-weight: 700;
+    color: white; margin-bottom: 10px;
+}
+.footer-desc { font-size: 0.8rem; line-height: 1.75; color: rgba(255,255,255,0.48); }
+.footer-col h4 {
+    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 16px; font-weight: 700;
+}
+.footer-col a {
+    display: block; color: rgba(255,255,255,0.52); text-decoration: none;
+    font-size: 0.82rem; margin-bottom: 9px; transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--gold); }
+.footer-bottom {
+    max-width: 1000px; margin: 28px auto 0;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.74rem; color: rgba(255,255,255,0.3);
+}
+@media (max-width: 600px) {
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+}
+.footer-quote { font-style: italic; color: rgba(255,255,255,0.22); }
 
-        footer a {
-            color: #3498db;
-            text-decoration: none;
-        }
+/* ================================================
+   SCROLL FADE ANIMATION
+================================================ */
+.fade-in {
+    opacity: 0; transform: translateY(22px);
+    transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+.fade-in.visible { opacity: 1; transform: none; }
 
-        footer a:hover {
-            text-decoration: underline;
-        }
+/* ================================================
+   RESPONSIVE
+================================================ */
+@media (max-width: 600px) {
+    .photo-grid { --photo-cols: 1; } /* 小屏单列 */
+    .photo-grid.masonry { column-count: 1; }
+    .hobbies-grid { grid-template-columns: repeat(2, 1fr); }
+    .nav-links { display: none; }
+    .research-card { padding: 28px 24px; }
+}
+
     </style>
 </head>
 <body>
 
-    <!-- 导航栏 -->
-    <nav>
-        <a href="#about">个人简介</a>
-        <a href="#education">学习经历</a>
-        <a href="#hobbies">兴趣爱好</a>
-        <a href="#travel">旅行足迹</a>
-        <a href="#research">研究方向</a>
-        <a href="#resources">资料库</a>
-    </nav>
-
-    <!-- 主要内容 -->
-    <div class="container">
-        <!-- 个人简介 -->
-        <section id="about">
-            <h2>个人简介</h2>
-            <p>欢迎光临我的主页！我是洪思诚，2001年7月生于南京。目前是上海交通大学振动研究所的2023级博士研究生，研究方向为基于视觉的结构振动、位移高精度测量系统。</p>
-             <div class="center-img">
-            <img src="profile.jpg" alt="个人照片">
-             </div>
-        </section>
-
-        <!-- 学习经历 -->
-        <section id="education">
-            <h2>学习经历</h2>
-            <ul>
-                <li> 上海交通大学 本科 机械工程（试点班） 2019.9-2023.6</li>
-                <li> 南京市梅山高级中学 高中 2016.9-2019.6</li>
-                <li> 南京市梅山第一中学 初中 2014.9-2016.6</li>
-                <li> 南京师大附中新城初中南校区 初一 2013.9-2014.6</li>
-                <li> 南京致远外国语小学 小学 2007.9-2013.6</li>
-            </ul>
-        </section>
-
-        <!-- 兴趣爱好与特长 -->
-        <section id="hobbies">
-            <h2>兴趣爱好与特长</h2>
-            <p>我的兴趣爱好包括：</p>
-            <ul>
-                <li>旅行</li>
-                <li>影视：越狱、生化危机</li>
-                <li>体制与社会</li>
-            </ul>
-            <p>我的特长有：</p>
-            <ul>
-                <li>篮球</li>
-                <li>ENFJ</li>
-            </ul>
-        </section>
-
-        <!-- 旅行过的地方 -->
-        <section id="travel">
-            <h2>旅行足迹</h2>
-            <p>我去过的地方：</p>
-            <ul>
-                <li>法国 2024/6/23-7/5 居住于91省Massy地区</li>
-            </ul>
-            <div class="center-img">
-            <img src="travel1.jpg" alt="旅行照片1">
-            </div>
-            <ul>
-                <li>俄罗斯 2016/6/25-7/3  莫斯科-弗拉基米尔-圣彼得堡</li>
-            </ul>
-            <div class="center-img">
-            <img src="travel2.jpg" alt="旅行照片2">
-            </div>
-            <ul>
-                <li>南韩 2012/5/21-5/26  参观浦项制铁并居住于当地学生家中</li>
-            </ul>
-        </section>
-
-        <!-- 研究方向 -->
-        <section id="research">
-            <h2>研究方向</h2>
-            <p>我的研究方向是“基于视觉的结构振动、位移高精度测量技术”，目前正在研究：单目相机对靶标的多自由度运动提取。</p>
-        </section>
-        
-        <!-- 联系方式简介框 -->
-        <section id="contact" class="contact-box">
-            <h3>联系方式</h3>
-            <ul>
-                <li>📧 邮箱：<a href="mailto:hongsc77@sjtu.edu.cn">hongsc77@sjtu.edu.cn</a></li>
-                <li>📞 电话：<a href="tel:+8617366395572">173 6639 5572</a></li>
-                <li>🌐 工作团队：<a href="https://im.sjtu.edu.cn" target="_blank">装备智能运维中心</a></li>
-            </ul>
-        </section>
-    
-        <!-- 资料库 -->
-        <section id="resources">
-            <h2>资料库</h2>
-            <p>以下是我整理的一些资料，请自行取阅：</p>
-            <ul>
-                <li><a class="file-link" href="Hong Sicheng CV.pdf" download>File：Personal CV</a></li>
-                <li><a class="file-link" href="洪思诚个人简历.pdf" download>文件：个人简历</a></li>
-            </ul>
-        </section>
-        
-         <!-- 留言表单 -->
-         <div class="container">
-         <h2>访客留言</h2>
-            <form id="contact-form" action="https://formsubmit.co/hongsc77@sjtu.edu.cn" method="POST">
-            <!-- 留言内容 -->
-            <textarea name="message" rows="3" placeholder="请输入您的留言..." required></textarea>
-
-            <!-- 提交按钮 -->
-            <button type="submit" class="submit-btn">提交</button>
-
-            <!-- 隐藏字段（可选） -->
-           <input type="hidden" name="_subject" value="网页留言通知"> <!-- 邮件主题 -->
-            <input type="hidden" name="_captcha" value="false"> <!-- 禁用验证码 -->
-        </form>
-        </section>
+<!-- ==================== NAVIGATION ==================== -->
+<nav>
+    <div class="nav-inner">
+        <a class="nav-brand" href="#about">个人主页</a>
+        <div class="nav-links">
+            <a href="#about">简介</a>
+            <a href="#education">学历</a>
+            <a href="#ai-chat">AI助手</a>
+            <a href="#research">研究</a>
+            <a href="#hobbies">爱好</a>
+            <a href="#travel">旅行</a>
+            <a href="#contact">联系</a>
+            <a href="#resources">资料库</a>
+        </div>
     </div>
-    
-    <!-- 页脚 -->
-    <footer>
-        <p>© 2025 Hong Sicheng的个人主页 | 访问我的 <a href="https://github.com/hongscME" target="_blank">GitHub</a></p>
-    </footer>
+</nav>
 
+<!-- ==================== HERO ==================== -->
+<div class="hero">
+    <div class="hero-overline">PhD Researcher · SJTU · 2023</div>
+    <h1>个人主页</h1>
+    <div class="hero-en">Research & Notes</div>
+    <div class="hero-rule"></div>
+    <p class="hero-sub">上海交通大学振动研究所 · 装备智能运维中心<br>基于视觉的智能感知 · 深度学习 · 结构振动高精度测量</p>
+</div>
+
+<!-- ==================== MAIN ==================== -->
+<div class="container">
+
+<!-- ── 01 · 个人简介 ── -->
+<section class="section fade-in" id="about">
+    <div class="section-header">
+        <span class="section-num">01</span>
+        <h2>个人简介</h2>
+    </div>
+    <div class="about-grid">
+        <div>
+            <p>欢迎来到我的主页。我是上海交通大学振动研究所 2023 级博士研究生，现就读于装备智能运维中心。</p>
+            <p>我的研究聚焦于<strong>基于视觉的智能感知技术</strong>——结合深度学习与计算机视觉方法，探索结构振动与位移的高精度测量系统。目前专注于单目相机对靶标的多自由度运动提取课题。</p>
+            <div class="meta-tags">
+                <span class="meta-tag"><span class="dot"></span>博士在读 · 2023级</span>
+                <span class="meta-tag"><span class="dot"></span>上海交通大学振动研究所</span>
+                <span class="meta-tag"><span class="dot"></span>装备智能运维中心</span>
+            </div>
+        </div>
+        <div>
+            <!-- 📷 将 assets/images/profile.jpg 替换为你的个人照片文件 -->
+            <img class="about-photo" src="assets/images/profile.jpg" alt="个人照片">
+        </div>
+    </div>
+</section>
+
+<!-- ── 02 · 学习经历 ── -->
+<section class="section fade-in" id="education">
+    <div class="section-header">
+        <span class="section-num">02</span>
+        <h2>学习经历</h2>
+    </div>
+    <div class="timeline">
+        <div class="tl-item">
+            <div class="tl-dot current"></div>
+            <div class="tl-card">
+                <div class="tl-title">上海交通大学 — 振动研究所</div>
+                <div class="tl-meta">
+                    <span>工学博士 · 机械工程</span>
+                    <span class="tl-badge">2023.9 — 至今</span>
+                </div>
+            </div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-card">
+                <div class="tl-title">上海交通大学</div>
+                <div class="tl-meta">
+                    <span>工学学士 · 机械工程（试点班）</span>
+                    <span class="tl-badge">2019.9 — 2023.6</span>
+                </div>
+            </div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-card">
+                <div class="tl-title">南京市梅山高级中学</div>
+                <div class="tl-meta">
+                    <span>高中</span>
+                    <span class="tl-badge">2016.9 — 2019.6</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── 03 · AI 智能助手 ── -->
+<section class="ai-section fade-in" id="ai-chat">
+    <div class="section-header">
+        <span class="section-num">03</span>
+        <h2>AI 智能助手</h2>
+    </div>
+    <p class="ai-intro">
+        这是一个基于大语言模型的交互模块，可代我解答研究方向、学术背景与合作意向等公开问题。
+        AI 助手仅回应与学术研究相关的内容，不涉及隐私或不当话题。点击「开始对话」即可与助手互动，点击「结束对话」可收起聊天框。
+    </p>
+    <div class="ai-card">
+        <!-- Header -->
+        <div class="ai-header">
+            <div class="ai-header-left">
+                <div class="ai-avatar">AI</div>
+                <div>
+                    <div class="ai-name">AI 学术助手</div>
+                    <div class="ai-status"><span class="ai-status-dot"></span>可开始/结束对话</div>
+                </div>
+            </div>
+            <button class="ai-toggle-btn" id="chatToggleBtn" onclick="toggleChat()">开始对话</button>
+        </div>
+
+        <!-- Body (hidden by default) -->
+        <div class="ai-body" id="chatBody">
+            <!-- Messages -->
+            <div class="ai-messages" id="chatMessages">
+                <div class="msg bot">
+                    <div class="msg-av">H</div>
+                    <div class="msg-bub">
+                        你好！我是洪思诚的 AI 助手。可以向我询问关于研究方向、学术经历或合作意向等问题。有什么可以帮到你？
+                    </div>
+                </div>
+            </div>
+            <!-- Suggested questions -->
+            <div class="ai-suggest-bar" id="suggestBar">
+                <button class="suggest-chip" onclick="sendSug('你的研究方向是什么？')">研究方向是什么？</button>
+                <button class="suggest-chip" onclick="sendSug('目前在做什么课题？')">目前在做什么课题？</button>
+                <button class="suggest-chip" onclick="sendSug('有哪些合作机会？')">有哪些合作机会？</button>
+                <button class="suggest-chip" onclick="sendSug('你用了哪些技术方法？')">用了哪些技术方法？</button>
+            </div>
+            <!-- Input -->
+            <div class="ai-input-row">
+                <input class="ai-input" id="chatInput" type="text"
+                    placeholder="输入你的问题，按 Enter 发送…"
+                    onkeydown="if(event.key==='Enter')sendMsg()">
+                <button class="ai-send" id="sendBtn" onclick="sendMsg()" title="发送">➤</button>
+            </div>
+            <div class="ai-notice">由上海交大大模型驱动 · 仅限学术问答 · 不代表本人全部个人观点</div>
+        </div>
+    </div>
+</section>
+
+<!-- ── 04 · 研究方向 ── -->
+<section class="section fade-in" id="research">
+    <div class="section-header">
+        <span class="section-num">04</span>
+        <h2>研究方向</h2>
+    </div>
+    <div class="research-card">
+        <h3>Research Focus</h3>
+        <p>
+            基于视觉的<strong style="color:var(--gold-light)">智能感知技术</strong>，结合
+            <strong style="color:var(--gold-light)">深度学习</strong>与计算机视觉，
+            用以实现结构振动与位移的<strong style="color:var(--gold-light)">高精度测量</strong>。
+            当前研究聚焦于单目相机对靶标的多自由度运动提取，
+            探索在复杂工程环境中可稳定部署的非接触式动态响应测量系统。
+        </p>
+        <div class="research-tags">
+            <span class="rtag">视觉智能感知</span>
+            <span class="rtag">深度学习</span>
+            <span class="rtag">结构振动测量</span>
+            <span class="rtag">位移高精度提取</span>
+            <span class="rtag">单目相机</span>
+            <span class="rtag">多自由度运动</span>
+            <span class="rtag">非接触测量</span>
+        </div>
+    </div>
+</section>
+
+<!-- ── 05 · 兴趣爱好 ── -->
+<section class="section fade-in" id="hobbies">
+    <div class="section-header">
+        <span class="section-num">05</span>
+        <h2>兴趣爱好与特长</h2>
+    </div>
+    <div class="hobbies-grid">
+        <div class="hobby-card">
+            <span class="hobby-icon">✈️</span>
+            <div class="hobby-label">旅行</div>
+            <div class="hobby-sub">探索不同文化与风景</div>
+        </div>
+        <div class="hobby-card">
+            <span class="hobby-icon">🎬</span>
+            <div class="hobby-label">影视</div>
+            <div class="hobby-sub">越狱 · 生化危机</div>
+        </div>
+        <div class="hobby-card">
+            <span class="hobby-icon">🏀</span>
+            <div class="hobby-label">篮球</div>
+            <div class="hobby-sub">特长运动项目</div>
+        </div>
+        <div class="hobby-card">
+            <span class="hobby-icon">🧭</span>
+            <div class="hobby-label">ENFJ</div>
+            <div class="hobby-sub">MBTI 人格类型</div>
+        </div>
+    </div>
+</section>
+
+<!-- ── 06 · 旅行足迹 ── -->
+<section class="section fade-in" id="travel">
+    <div class="section-header">
+        <span class="section-num">06</span>
+        <h2>旅行足迹</h2>
+    </div>
+
+    <!-- ===== 法国 ===== -->
+    <div class="travel-entry">
+        <div class="travel-header">
+            <span class="travel-flag">🇫🇷</span>
+            <div class="travel-info">
+                <h4>法国 · Massy, Île-de-France</h4>
+                <span>2024年6月23日 — 7月5日 · 居住于91省Massy地区</span>
+            </div>
+        </div>
+        <!--
+         * 照片文件放到 assets/images/ 目录。
+         * 想改成三列：把 CSS 里的 --photo-cols 改成 3。
+         * 想改成流水式：下面我在教程里再给你一个可替换的瀑布流版本。
+        -->
+        <div class="photo-grid">
+            <img src="assets/images/travel1.jpg" alt="法国旅行照片 1">
+            <!-- 追加照片示例（删除注释即可使用）：
+            <img src="france_2.jpg" alt="法国旅行照片 2">
+            <img src="france_3.jpg" alt="法国旅行照片 3">
+            <img src="france_4.jpg" alt="法国旅行照片 4">
+            -->
+        </div>
+    </div>
+
+    <!-- ===== 俄罗斯 ===== -->
+    <div class="travel-entry">
+        <div class="travel-header">
+            <span class="travel-flag">🇷🇺</span>
+            <div class="travel-info">
+                <h4>俄罗斯 · 莫斯科 · 弗拉基米尔 · 圣彼得堡</h4>
+                <span>2016年6月25日 — 7月3日</span>
+            </div>
+        </div>
+        <div class="photo-grid">
+            <img src="assets/images/travel2.jpg" alt="俄罗斯旅行照片 1">
+            <!-- 追加俄罗斯照片：
+            <img src="russia_2.jpg" alt="俄罗斯旅行照片 2">
+            -->
+        </div>
+    </div>
+
+    <!-- ===== 韩国 ===== -->
+    <div class="travel-entry">
+        <div class="travel-header">
+            <span class="travel-flag">🇰🇷</span>
+            <div class="travel-info">
+                <h4>韩国 · 浦项</h4>
+                <span>2012年5月21日 — 5月26日 · 参观浦项制铁，寄宿当地学生家中</span>
+            </div>
+        </div>
+        <!-- 韩国暂无照片；如需添加，取消下方注释 -->
+        <!--
+        <div class="photo-grid">
+            <img src="korea_1.jpg" alt="韩国旅行照片 1">
+        </div>
+        -->
+    </div>
+
+    <!--
+     * ╔══════════════════════════════════════════════╗
+     * ║  📌 新增旅行地点模板（复制后填写即可）         ║
+     * ╚══════════════════════════════════════════════╝
+    <div class="travel-entry">
+        <div class="travel-header">
+            <span class="travel-flag">🏳️</span>
+            <div class="travel-info">
+                <h4>国家 · 城市</h4>
+                <span>年份 · 备注信息</span>
+            </div>
+        </div>
+        <div class="photo-grid">
+            <img src="照片文件名.jpg" alt="照片描述">
+        </div>
+    </div>
+    -->
+</section>
+
+<!-- ── 07 · 联系方式 ── -->
+<section class="section fade-in" id="contact">
+    <div class="section-header">
+        <span class="section-num">07</span>
+        <h2>联系方式</h2>
+    </div>
+    <div class="contact-box">
+        <ul class="contact-list">
+            <li>
+                <div class="c-icon">📧</div>
+                <div class="c-detail">
+                    <span class="c-label">学术邮箱</span>
+                    <span class="c-value"><a href="mailto:hongsc77@sjtu.edu.cn">hongsc77@sjtu.edu.cn</a></span>
+                </div>
+            </li>
+            <li>
+                <div class="c-icon">🏫</div>
+                <div class="c-detail">
+                    <span class="c-label">所属团队</span>
+                    <span class="c-value"><a href="https://im.sjtu.edu.cn" target="_blank" rel="noopener">装备智能运维中心 · 上海交通大学</a></span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<!-- ── 08 · 资料库 ── -->
+<section class="section fade-in" id="resources">
+    <div class="section-header">
+        <span class="section-num">08</span>
+        <h2>资料库</h2>
+    </div>
+    <p style="font-size:0.88rem;color:var(--text-light);margin-bottom:20px;">
+        以下为公开学术资料，欢迎取阅。若页面部署在 GitHub Pages 上，放进仓库并被页面引用的图片、PDF 都会对访客可见；隐私材料不要放进这个仓库。
+    </p>
+    <div class="resource-list">
+        <a class="resource-item" href="assets/docs/Hong_Sicheng_CV.pdf" download>
+            <div class="r-icon">📄</div>
+            <div>
+                <div class="r-name">Personal CV</div>
+                <div class="r-meta">英文简历 · PDF · 最新版</div>
+            </div>
+            <span class="r-arrow">↓</span>
+        </a>
+        <!--
+         * 📌 新增资料模板：
+         * <a class="resource-item" href="文件名.pdf" download>
+         *     <div class="r-icon">📄</div>
+         *     <div>
+         *         <div class="r-name">文件名称</div>
+         *         <div class="r-meta">说明文字</div>
+         *     </div>
+         *     <span class="r-arrow">↓</span>
+         * </a>
+        -->
+    </div>
+</section>
+
+<!-- ── 09 · 访客留言 ── -->
+<section class="section fade-in">
+    <div class="section-header">
+        <span class="section-num">09</span>
+        <h2>访客留言</h2>
+    </div>
+    <div class="guestbook-card">
+        <form action="https://formsubmit.co/hongsc77@sjtu.edu.cn" method="POST">
+            <label class="form-label" for="guestMsg">留言内容</label>
+            <textarea class="form-textarea" id="guestMsg" name="message" rows="4"
+                placeholder="欢迎留下您的想法、问题或合作意向…" required></textarea>
+            <input type="hidden" name="_subject" value="网页访客留言">
+            <input type="hidden" name="_captcha" value="false">
+            <button class="form-btn" type="submit">提交留言</button>
+        </form>
+    </div>
+</section>
+
+</div><!-- /container -->
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+    <div class="footer-grid">
+        <div>
+            <div class="footer-brand">个人主页</div>
+            <p class="footer-desc">
+                上海交通大学振动研究所 · 2023级博士研究生<br>
+                装备智能运维中心<br><br>
+                致力于以「视觉」感知结构之微末振动，<br>
+                以毫米精度理解工程世界的低语。
+            </p>
+        </div>
+        <div class="footer-col">
+            <h4>快速导航</h4>
+            <a href="#about">个人简介</a>
+            <a href="#education">学习经历</a>
+            <a href="#ai-chat">AI 助手</a>
+            <a href="#research">研究方向</a>
+            <a href="#travel">旅行足迹</a>
+        </div>
+        <div class="footer-col">
+            <h4>联系与资源</h4>
+            <a href="#contact">联系方式</a>
+            <a href="#resources">资料库</a>
+            <a href="mailto:hongsc77@sjtu.edu.cn">发送邮件</a>
+            <a href="https://im.sjtu.edu.cn" target="_blank" rel="noopener">课题组主页</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>© 2025 个人主页 · All rights reserved</span>
+        <span class="footer-quote">「知之为知之，不知为不知，是知也。」— 论语</span>
+    </div>
+</footer>
+
+<!-- ==================== SCRIPTS ==================== -->
+<script>
+/*
+ * AI 聊天模块：推荐结构
+ * 1) 前端只负责展示与发送消息
+ * 2) Cloudflare Worker 保存密钥、注入系统提示词并代理请求
+ * 3) 前端只调用 Worker URL，不在浏览器里暴露 API Key
+ *
+ * 你需要在下面填入 Worker 地址，例如：
+ * const WORKER_URL = "https://your-worker.yourname.workers.dev/chat";
+ *
+ * 若还没部署 Worker，聊天框仍可打开，但发送会提示未配置。
+ */
+
+// ====== 配置区（只需修改这里）======
+const WORKER_URL = "https://back-url.sjtuurl.workers.dev"; // 你的 Cloudflare Worker 地址（后端代理）
+
+
+// ====== 状态变量 ======
+let history = [];
+let isOpen  = false;
+let busy    = false;
+
+// ====== 开关聊天 ======
+function toggleChat() {
+    const body = document.getElementById('chatBody');
+    const btn  = document.getElementById('chatToggleBtn');
+    isOpen = !isOpen;
+    if (isOpen) {
+        body.classList.add('open');
+        btn.textContent = '结束对话';
+        document.getElementById('chatInput').focus();
+    } else {
+        body.classList.remove('open');
+        btn.textContent = '开始对话';
+    }
+}
+
+// ====== 快捷问题 ======
+function sendSug(text) {
+    document.getElementById('chatInput').value = text;
+    document.getElementById('suggestBar').style.display = 'none';
+    sendMsg();
+}
+
+// ====== 发送消息 ======
+async function sendMsg() {
+    if (busy) return;
+
+    if (!WORKER_URL) {
+        appendMsg('bot', '当前还没有配置 Worker 地址。请先按教程部署 Cloudflare Worker，再把它的 URL 填进代码顶部的 WORKER_URL。');
+        return;
+    }
+
+    const inp  = document.getElementById('chatInput');
+    const text = inp.value.trim();
+    if (!text) return;
+
+    inp.value = '';
+    document.getElementById('suggestBar').style.display = 'none';
+
+    appendMsg('user', text);
+    history.push({ role: 'user', content: text });
+
+    const tid = showTyping();
+    busy = true;
+    document.getElementById('sendBtn').disabled = true;
+
+    try {
+        const res = await fetch(WORKER_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                messages: history,
+                temperature: 0.7,
+                max_tokens: 600
+            })
+        });
+
+        if (!res.ok) {
+            const t = await res.text();
+            throw new Error(`HTTP ${res.status}: ${t.slice(0,120)}`);
+        }
+
+        const data  = await res.json();
+        const reply = data.choices?.[0]?.message?.content?.trim()
+                   || '抱歉，暂时无法回复，请稍后再试。';
+
+        removeTyping(tid);
+        appendMsg('bot', reply);
+        history.push({ role: 'assistant', content: reply });
+
+    } catch (e) {
+        removeTyping(tid);
+        console.error('[AI Chat]', e);
+        appendMsg('bot', '⚠️ 连接失败（' + e.message.slice(0,60) + '）。如需联系，可直接发送邮件到 hongsc77@sjtu.edu.cn');
+    } finally {
+        busy = false;
+        document.getElementById('sendBtn').disabled = false;
+        inp.focus();
+    }
+}
+
+// ====== 渲染气泡 ======
+function appendMsg(role, text) {
+    const box = document.getElementById('chatMessages');
+    const el  = document.createElement('div');
+    el.className = 'msg ' + role;
+    el.innerHTML = `
+        <div class="msg-av">${role==='bot' ? 'AI' : '访'}</div>
+        <div class="msg-bub"></div>`;
+    el.querySelector('.msg-bub').textContent = text;
+    box.appendChild(el);
+    box.scrollTop = box.scrollHeight;
+}
+
+// ====== 打字指示器 ======
+function showTyping() {
+    const box = document.getElementById('chatMessages');
+    const id  = 'ty' + Date.now();
+    const el  = document.createElement('div');
+    el.className = 'msg bot'; el.id = id;
+    el.innerHTML = `
+        <div class="msg-av">AI</div>
+        <div class="msg-bub">
+            <div class="typing-bub"><span></span><span></span><span></span></div>
+        </div>`;
+    box.appendChild(el);
+    box.scrollTop = box.scrollHeight;
+    return id;
+}
+function removeTyping(id) {
+    const el = document.getElementById(id);
+    if (el) el.remove();
+}
+
+// ====== Scroll 淡入动画 ======
+const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
 </body>
 </html>
